@@ -6,6 +6,44 @@ const {} = Astro.props;
 
 <div class="grok-wrap mx-auto">
   <svg
+    class="dynamic-svg"
+    id="dynamic-svg"
+    xmlns="http://www.w3.org/2000/svg"
+    width="100%"
+    preserveAspectRatio="xMidYMid meet"
+  >
+
+    <defs>
+      <style>
+      @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap');
+      text { font-family: 'Oswald', sans-serif; }
+      </style>
+    </defs>
+    <mask id="dynmask">
+      <rect x="0" y="0" width="100%" height="100%" fill="#fff"></rect>
+      <text
+        id="svg-text"
+        font-family="Oswald, sans-serif"
+        font-weight="black"
+        text-anchor="middle"
+        fill="transparent"
+        stroke-width="0.15"
+        stroke="red"
+        dominant-baseline="middle"
+      >
+        CAPS
+      </text>
+    </mask>
+    <rect
+      x="0"
+      y="0"
+      width="100%"
+      height="100%"
+      mask="url(#dynmask)"
+      fill="var(--bg-color)"></rect>
+  </svg>
+  <!--  -->
+  <svg
     class="logo"
     viewBox="0 0 286 104"
     fill="none"
@@ -80,6 +118,29 @@ const {} = Astro.props;
       fill="var(--bg-color)"></rect>
   </svg>
   <div class="grok-bg__gradient"></div>
+  <!-- <svg class="logo" viewBox="0 0 10 2">
+    <mask id="text-mask">
+      <rect x="0" y="0" width="10" height="2" fill="#fff"></rect>
+      <text
+        x="5"
+        y="1"
+        text-anchor="middle"
+        font-size="2"
+        font-family="Oswald, sans-serif"
+        fill="transparent"
+        stroke-width="0.015"
+        stroke="red"
+        font-family="sans-serif">CAPSBOLD</text
+      ></mask
+    >
+    <rect
+      x="0"
+      y="0"
+      width="10"
+      height="2"
+      mask="url(#text-mask)"
+      fill="var(--bg-color)"></rect>
+  </svg> -->
   <div class="box">
     <img
       alt=""
@@ -110,89 +171,117 @@ const {} = Astro.props;
 </div>
 
 <script>
-import gsap from 'gsap';
+  import gsap from 'gsap';
 
-const mouseCoords = {
-  x: 0,
-  y: 0
-};
+  const mouseCoords = {
+    x: 0,
+    y: 0
+  };
 
-const boxData = [
-  { x: 0, y: 0, lerpFactor: 0.1 }, // orange (самый быстрый)
-  { x: 0, y: 0, lerpFactor: 0.05 }, // red (средний)
-  { x: 0, y: 0, lerpFactor: 0.025 } // blue (самый медленный)
-];
+  const boxData = [
+    { x: 0, y: 0, lerpFactor: 0.1 }, // orange (самый быстрый)
+    { x: 0, y: 0, lerpFactor: 0.05 }, // red (средний)
+    { x: 0, y: 0, lerpFactor: 0.025 } // blue (самый медленный)
+  ];
 
-function lerp(start: number, end: number, t: number) {
-  return start * (1 - t) + end * t;
-}
-
-const capsBoldColors = [
-  '#9160e6',
-  '#ffeb23',
-  '#ffffff'
-];
-
-// const rainbowColors = [
-//   "red", // 0  (Левый край)
-//   "orange", // 1
-//   "yellow", // 2
-//   "green", // 3  (Центр экрана)
-//   "cyan", // 4
-//   "blue", // 5
-//   "violet" // 6  (Правый край)
-// ];
-
-document.addEventListener('DOMContentLoaded', () => {
-  const container = document.querySelector('.grok-wrap');
-  const boxes = document.querySelectorAll('.box');
-
-  if (container && boxes.length) {
-    boxes.forEach((box, index) => {
-      gsap.set(box, { scale: 1, xPercent: -50, yPercent: -50 });
-
-      const xTo = gsap.quickTo(box, 'x', { duration: 0.3, ease: 'power3' });
-      const yTo = gsap.quickTo(box, 'y', { duration: 0.3, ease: 'power3' });
-
-      function handleMouseMove(e) {
-        const containerRect = container.getBoundingClientRect();
-        const containerWidth = containerRect.width;
-        const containerHeight = containerRect.height;
-
-        // Ограничиваем координаты мыши пределами контейнера
-        mouseCoords.x = Math.max(0, Math.min(e.clientX - containerRect.left, containerWidth));
-        mouseCoords.y = Math.max(0, Math.min(e.clientY - containerRect.top, containerHeight));
-
-        // Значение от -1 (лево) до 1 (право)
-        let t = (mouseCoords.x - containerWidth / 2) / (containerWidth / 2);
-        t = Math.max(-1, Math.min(1, t)); // Ограничиваем диапазон
-
-        // Преобразуем -1..1 в индекс массива (0..6)
-        let colorIndex = Math.round(((t + 1) / 2) * (capsBoldColors.length - 1));
-
-        // Меняем цвет боксов
-        boxes.forEach((boxAgain, i) => {
-          let adjustedIndex = colorIndex - i;
-          if (adjustedIndex < 0) {
-            adjustedIndex = 0;
-          }
-          adjustedIndex = Math.min(adjustedIndex, capsBoldColors.length - 1); // Ограничиваем индекс
-          (boxAgain as HTMLElement).style.backgroundColor = capsBoldColors[adjustedIndex];
-        });
-      }
-
-      window.addEventListener('mousemove', handleMouseMove);
-
-      gsap.ticker.add(() => {
-        const data = boxData[index];
-        data.x = lerp(data.x, mouseCoords.x, data.lerpFactor);
-        data.y = lerp(data.y, mouseCoords.y, data.lerpFactor);
-        xTo(data.x);
-        yTo(data.y);
-      });
-    });
+  function lerp(start: number, end: number, t: number) {
+    return start * (1 - t) + end * t;
   }
-});
 
+  const capsBoldColors = ['#9160e6', '#ffeb23', '#ffffff'];
 
+  // const rainbowColors = [
+  //   "red", // 0  (Левый край)
+  //   "orange", // 1
+  //   "yellow", // 2
+  //   "green", // 3  (Центр экрана)
+  //   "cyan", // 4
+  //   "blue", // 5
+  //   "violet" // 6  (Правый край)
+  // ];
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.querySelector('.grok-wrap');
+    const boxes = document.querySelectorAll('.box');
+
+    if (container && boxes.length) {
+      boxes.forEach((box, index) => {
+        gsap.set(box, { scale: 1, xPercent: -50, yPercent: -50 });
+
+        const xTo = gsap.quickTo(box, 'x', { duration: 0.3, ease: 'power3' });
+        const yTo = gsap.quickTo(box, 'y', { duration: 0.3, ease: 'power3' });
+
+        function handleMouseMove(e) {
+          const containerRect = container.getBoundingClientRect();
+          const containerWidth = containerRect.width;
+          const containerHeight = containerRect.height;
+
+          // Ограничиваем координаты мыши пределами контейнера
+          mouseCoords.x = Math.max(
+            0,
+            Math.min(e.clientX - containerRect.left, containerWidth)
+          );
+          mouseCoords.y = Math.max(
+            0,
+            Math.min(e.clientY - containerRect.top, containerHeight)
+          );
+
+          // Значение от -1 (лево) до 1 (право)
+          let t = (mouseCoords.x - containerWidth / 2) / (containerWidth / 2);
+          t = Math.max(-1, Math.min(1, t)); // Ограничиваем диапазон
+
+          // Преобразуем -1..1 в индекс массива (0..6)
+          let colorIndex = Math.round(
+            ((t + 1) / 2) * (capsBoldColors.length - 1)
+          );
+
+          // Меняем цвет боксов
+          boxes.forEach((boxAgain, i) => {
+            let adjustedIndex = colorIndex - i;
+            if (adjustedIndex < 0) {
+              adjustedIndex = 0;
+            }
+            adjustedIndex = Math.min(adjustedIndex, capsBoldColors.length - 1); // Ограничиваем индекс
+            (boxAgain as HTMLElement).style.backgroundColor =
+              capsBoldColors[adjustedIndex];
+          });
+        }
+
+        window.addEventListener('mousemove', handleMouseMove);
+
+        gsap.ticker.add(() => {
+          const data = boxData[index];
+          data.x = lerp(data.x, mouseCoords.x, data.lerpFactor);
+          data.y = lerp(data.y, mouseCoords.y, data.lerpFactor);
+          xTo(data.x);
+          yTo(data.y);
+        });
+      });
+    }
+
+    const text = document.querySelector('#svg-text');
+    const svg = document.querySelector('.dynamic-svg');
+
+    if (svg && text) {
+      const resizeSVG = () => {
+        const bbox = (text as unknown as SVGGraphicsElement).getBBox();
+        if (bbox.width === 0 || bbox.height === 0) return;
+
+        const padding = 0;
+        const width = bbox.width + padding;
+        const height = bbox.height + padding;
+
+        // Устанавливаем размеры SVG
+        svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+
+        // Центрируем текст
+        text.setAttribute('x', (width / 2).toString());
+        text.setAttribute('y', (height / 2).toString());
+        text.setAttribute('dy', (bbox.height * 0.1).toString());
+      };
+
+      resizeSVG();
+      window.addEventListener('resize', resizeSVG); // Обновление при изменении экрана
+    }
+  });
 </script>
