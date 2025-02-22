@@ -6,6 +6,13 @@
 }
 
 .header__logo {
+  opacity: 0.5;
+  transition: opacity $transition-base;
+
+  &:hover {
+    opacity: 1;
+  }
+
   svg {
     width: 140px;
     height: 48px;

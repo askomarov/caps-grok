@@ -1,0 +1,103 @@
+.grok-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  align-self: center;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1024px;
+  /* border: 1px solid var(--bg-color); */
+}
+
+.grok-bg__gradient {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(180deg, #6f7374, var(--bg-color)) 0 0;
+  opacity: 0.5;
+  animation: grok-bg-anim 4s linear forwards;
+  z-index: 3;
+}
+
+.box {
+  width: clamp(100px, 20vw, 300px);
+  height: auto;
+  aspect-ratio: 1;
+  background: #ff0000;
+  position: absolute;
+  z-index: 6;
+  overflow: hidden;
+  transition: transform 0.1s ease, background-color 0.2s ease;
+  animation: box-appear-anim 2s linear forwards;
+  animation-delay: 2s;
+  opacity: 0;
+  mix-blend-mode: lighten;
+  user-select: none;
+  pointer-events: none;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+@keyframes grok-bg-anim {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes box-appear-anim {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.logo {
+  position: relative;
+  z-index: 10;
+}
+
+@media (max-width: 767.98px) {
+  .logo {
+    display: none;
+  }
+}
+
+.logo.logo--small {
+  display: none;
+  width: 100%;
+}
+
+@media (max-width: 767.98px) {
+  .logo.logo--small {
+    display: block;
+  }
+}
+
+.logo__path {
+  stroke: var(--bg-color);
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  animation: logo-path-anim 4s linear forwards;
+  animation-delay: 0.25s;
+  stroke-width: 1px;
+}
+
+@keyframes logo-path-anim {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

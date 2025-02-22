@@ -1,12 +1,19 @@
 .footer {
   padding: 12px 0;
   width: 100%;
-  background-image: url("./assets/mountain-min.jpg");
+  opacity: 0.8;
+  filter: grayscale(100%);
+  transition: opacity $transition-base, filter $transition-base;
+
+  &:hover {
+    opacity: 1;
+    filter: grayscale(0);
+  }
 }
 
 .footer__text {
   text-align: center;
   font-size: size(20);
-  color: $color-white;
+  color: var(--color-fedora);
   line-height: 1;
 }
