@@ -90,6 +90,8 @@
   stroke-dashoffset: 2000;
   animation: logo-path-anim 4s linear forwards;
   animation-delay: 0.25s;
+  stroke-width: var(--stroke-width);
+  stroke-linecap: round;
 }
 
 @keyframes logo-path-anim {

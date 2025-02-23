@@ -14,32 +14,154 @@ const { className } = Astro.props;
     <div class="header__logo">
       <Icon name="logo" />
     </div>
-    <details class="text-white text-right flex flex-col overflow-y-auto bg-black/50 p-2">
-      <summary>Settings form</summary>
-      <form id="svgwordform" class="grid gap-2 items-start ">
-        <div class="p-2 bg-black text-white flex items-center gap-2">
-          <label>BG color: </label>
-          <input type="color" value="#140e35" name="svgword" id="svgword" class="w-full flex-1 min-w-20" />
-        </div>
-        <div class="p-2 bg-black text-white flex items-center gap-2">
-          <label>Stroke color: </label>
-          <input type="color" value="#f7f7f7" name="stroke_color" id="stroke_color" class="w-full flex-1 min-w-20" />
-        </div>
-        <div class="p-2 bg-black text-white flex items-center gap-2">
-          <label>Color 1: </label>
-          <input type="color" value="#9160e6" name="circle_color_1" id="circle_color_1" class="w-full flex-1 min-w-20" />
-        </div>
-        <div class="p-2 bg-black text-white flex items-center gap-2">
-          <label>Color 2: </label>
-          <input type="color" value="#ffeb23" name="circle_color_2" id="circle_color_2" class="w-full flex-1 min-w-20" />
-        </div>
-        <div class="p-2 bg-black text-white flex items-center gap-2">
-          <label>Color 3: </label>
-          <input type="color" value="#ffffff" name="circle_color_3" id="circle_color_3" class="w-full flex-1 min-w-20" />
-        </div>
-        <button type="submit" class="px-2 py-3 bg-slate-300 text-black">Apply</button>
-      </form>
-    </details>
+    <button
+      id="openFormButton"
+      class="bg-black/50 p-2 text-white"
+      type="button"
+    >
+      Settings form
+    </button>
 
+    <dialog id="dialog-form" class="bg-black p-2 dialog-form">
+      <form method="dialog" id="svgwordform" class="grid gap-2 items-start">
+        <button
+          autofocus
+          id="closeFormButton"
+          type="button"
+          class="text-white border p-2 flex ml-auto">Close</button
+        >
+        <div class="p-2 bg-black text-white flex items-center gap-2">
+          <label>BG color:</label>
+          <input
+            type="color"
+            value="#140e35"
+            name="svgword"
+            id="svgword"
+            class="w-full flex-1 min-w-20"
+          />
+        </div>
+        <div class="p-2 bg-black text-white flex items-center gap-2">
+          <label>Stroke color:</label>
+          <input
+            type="color"
+            value="#f7f7f7"
+            name="stroke_color"
+            id="stroke_color"
+            class="w-full flex-1 min-w-20"
+          />
+        </div>
+        <div class="p-2 bg-black text-white flex items-center gap-2">
+          <label>Stroke width:</label>
+          <input
+            type="number"
+            value="1"
+            min="0.3"
+            max="3"
+            step="0.1"
+            name="stroke_width"
+            id="stroke_width"
+            class="w-full flex-1 min-w-20 text-black placeholder:text-black/50 px-3 py-2"
+            placeholder="1"
+            required
+          />
+        </div>
+        <div class="p-2 bg-black text-white flex items-center gap-2">
+          <label>Color 1:</label>
+          <input
+            type="color"
+            value="#9160e6"
+            name="circle_color_1"
+            id="circle_color_1"
+            class="w-full flex-1 min-w-20"
+          />
+        </div>
+        <div class="p-2 bg-black text-white flex items-center gap-2">
+          <label>Color 2:</label>
+          <input
+            type="color"
+            value="#ffeb23"
+            name="circle_color_2"
+            id="circle_color_2"
+            class="w-full flex-1 min-w-20"
+          />
+        </div>
+        <div class="p-2 bg-black text-white flex items-center gap-2">
+          <label>Color 3:</label>
+          <input
+            type="color"
+            value="#ffffff"
+            name="circle_color_3"
+            id="circle_color_3"
+            class="w-full flex-1 min-w-20"
+          />
+        </div>
+        <button type="submit" class="px-2 py-3 bg-slate-300 text-black"
+        >Apply</button
+        >
+      </form>
+    </dialog>
   </Container>
 </header>
+
+<script>
+  const dialog = document.querySelector('#dialog-form') as HTMLDialogElement;
+  const showButton = document.querySelector('#openFormButton');
+  const closeButton = document.querySelector('#closeFormButton');
+
+  showButton.addEventListener('click', () => {
+    dialog.showModal();
+  });
+
+  closeButton.addEventListener('click', () => {
+    dialog.close();
+  });
+  const color1 = getComputedStyle(document.body).getPropertyValue('--color-1').trim();
+  const color2 = getComputedStyle(document.body).getPropertyValue('--color-2').trim();
+  const color3 = getComputedStyle(document.body).getPropertyValue('--color-3').trim();
+
+  let colorPallet = [color1, color2, color3];
+  const svg = document.querySelector('.grok-wrap .logo');
+  const svgPaths = svg.querySelectorAll('.logo__path');
+
+  if (svg && svgPaths.length) {
+    const form = document.querySelector('#svgwordform');
+    const input = document.querySelector('#svgword') as HTMLInputElement;
+    const inputStrokeColor = document.querySelector('#stroke_color') as HTMLInputElement;
+    const inputStrokeWidth = document.querySelector('#stroke_width') as HTMLInputElement;
+    const inputColor1 = document.querySelector('#circle_color_1') as HTMLInputElement;
+    const inputColor2 = document.querySelector('#circle_color_2') as HTMLInputElement;
+    const inputColor3 = document.querySelector('#circle_color_3') as HTMLInputElement;
+
+    if (form && input) {
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (!input.value.trim()) return;
+        document.body.style.setProperty('--bg-color', input.value);
+        document.body.style.setProperty('--stroke-color', inputStrokeColor.value);
+        document.body.style.setProperty('--stroke-width', inputStrokeWidth.value + 'px');
+        document.body.style.setProperty('--color-1', inputColor1.value);
+        document.body.style.setProperty('--color-2', inputColor2.value);
+        document.body.style.setProperty('--color-3', inputColor3.value);
+        colorPallet = [inputColor1.value, inputColor2.value, inputColor3.value];
+
+        const colorChangeEvent = new CustomEvent('colorChange', {
+          detail: {
+            colorPallet
+          }
+        });
+        document.dispatchEvent(colorChangeEvent);
+
+        dialog.close();
+        svgPaths.forEach((path) => {
+          (path as HTMLElement).style.animation = 'none';
+          // eslint-disable-next-line max-nested-callbacks
+          setTimeout(() => {
+            (path as HTMLElement).style.animation = 'logo-path-anim 4s linear forwards';
+          }, 100);
+        });
+      });
+    }
+  }
+
+
+</script>

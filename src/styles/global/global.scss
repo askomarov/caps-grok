@@ -35,6 +35,7 @@ body {
   --color-1: #9160e6;
   --color-2: #ffeb23;
   --color-3: #ffffff;
+  --stroke-width: 1px;
   background-color: var(--bg-color);
 }
 
@@ -143,3 +144,14 @@ button,
 [type="submit"] {
   appearance: none;
 }
+
+.dialog-form::backdrop {
+  background-image:
+    linear-gradient(
+      45deg,
+      var(--color-1),
+      var(--color-2),
+    );
+  opacity: 0.75;
+}
+
