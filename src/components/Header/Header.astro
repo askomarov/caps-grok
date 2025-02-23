@@ -1,16 +1,45 @@
 ---
 import { Icon } from 'astro-icon/components';
 import Container from '@components/Container/Container';
+
+interface Props {
+  className?: string;
+}
+
+const { className } = Astro.props;
 ---
 
-<header class="header">
-  <Container className="flex items-center justify-between flex-wrap gap-2">
+<header class:list={['header', className]}>
+  <Container className="flex items-start justify-between flex-wrap gap-2">
     <div class="header__logo">
       <Icon name="logo" />
     </div>
-    <form name="svgwordform" id="svgwordform" class="flex gap-2">
-      <input type="text" name="svgword" id="svgword" placeholder="Type your word..." maxlength="10" class="w-full p-2 bg-slate-200 placeholder:text-black/50" />
-      <button type="submit" class="px-2 py-3 bg-slate-300 text-black">Apply</button>
-    </form>
+    <details class="text-white text-right flex flex-col overflow-y-auto bg-black/50 p-2">
+      <summary>Settings form</summary>
+      <form id="svgwordform" class="grid gap-2 items-start ">
+        <div class="p-2 bg-black text-white flex items-center gap-2">
+          <label>BG color: </label>
+          <input type="color" value="#140e35" name="svgword" id="svgword" class="w-full flex-1 min-w-20" />
+        </div>
+        <div class="p-2 bg-black text-white flex items-center gap-2">
+          <label>Stroke color: </label>
+          <input type="color" value="#f7f7f7" name="stroke_color" id="stroke_color" class="w-full flex-1 min-w-20" />
+        </div>
+        <div class="p-2 bg-black text-white flex items-center gap-2">
+          <label>Color 1: </label>
+          <input type="color" value="#9160e6" name="circle_color_1" id="circle_color_1" class="w-full flex-1 min-w-20" />
+        </div>
+        <div class="p-2 bg-black text-white flex items-center gap-2">
+          <label>Color 2: </label>
+          <input type="color" value="#ffeb23" name="circle_color_2" id="circle_color_2" class="w-full flex-1 min-w-20" />
+        </div>
+        <div class="p-2 bg-black text-white flex items-center gap-2">
+          <label>Color 3: </label>
+          <input type="color" value="#ffffff" name="circle_color_3" id="circle_color_3" class="w-full flex-1 min-w-20" />
+        </div>
+        <button type="submit" class="px-2 py-3 bg-slate-300 text-black">Apply</button>
+      </form>
+    </details>
+
   </Container>
 </header>

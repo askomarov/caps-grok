@@ -31,6 +31,10 @@ body {
   display: flex;
   flex-direction: column;
   --bg-color: #140e35;
+  --stroke-color: #f7f7f7;
+  --color-1: #9160e6;
+  --color-2: #ffeb23;
+  --color-3: #ffffff;
   background-color: var(--bg-color);
 }
 

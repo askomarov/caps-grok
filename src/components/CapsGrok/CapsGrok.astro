@@ -5,46 +5,25 @@ const {} = Astro.props;
 ---
 
 <div class="grok-wrap mx-auto">
-  <svg
-    class="dynamic-svg logo"
-    id="dynamic-svg"
-    xmlns="http://www.w3.org/2000/svg"
-    width="100%"
-    preserveAspectRatio="xMidYMid meet"
-    stroke-linecap="round"
-  >
-    <defs>
-      <style>
-        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap');
-        text {
-          font-family: 'Oswald', sans-serif;
-        }
-      </style>
-    </defs>
-    <mask id="dynmask">
+  <svg class="logo" viewBox="0 0 286 104" xmlns="http://www.w3.org/2000/svg" width="100%">
+    <mask id="logomask">
       <rect x="0" y="0" width="100%" height="100%" fill="#fff"></rect>
-      <text
-        id="svg-text"
-        class="logo__path"
-        font-family="Oswald, sans-serif"
-        font-weight="black"
-        text-anchor="middle"
-        fill="transparent"
-        stroke-width="0.15"
-        stroke="red"
-        dominant-baseline="middle"
-      >
-        CAPS
-      </text>
+      <path fill="none" class="logo__path"
+        d="M234.226 88.8978L234.227 88.8993C236.312 93.4267 239.406 96.7907 243.507 98.9793C247.602 101.165 252.688 102.25 258.751 102.25C263.946 102.25 268.438 101.162 272.214 98.9757C276.063 96.7933 279.034 93.84 281.121 90.1175L281.123 90.1155C283.208 86.3148 284.25 82.1113 284.25 77.5102C284.25 70.7517 282.773 65.06 279.804 60.4494C276.933 55.8666 273.383 51.7667 269.157 48.15C269.157 48.1495 269.156 48.1491 269.156 48.1486L261.18 41.0692C258.411 38.5968 256.16 36.248 254.425 34.0231C252.797 31.7551 251.974 28.8501 251.974 25.2893C251.974 23.655 252.398 22.0149 253.253 20.3666C254.16 18.7695 255.544 17.9763 257.44 17.9763C259.207 17.9763 260.472 18.5533 261.288 19.6741L261.288 19.6742L261.293 19.6807C262.126 20.7501 262.673 22.339 262.909 24.4764L262.909 24.4764L262.91 24.4867C263.226 26.5544 263.424 29.0245 263.503 31.8988L263.51 32.174L263.784 32.14L282.125 29.8591L282.351 29.8311L282.344 29.6042C282.264 26.7083 281.906 23.6938 281.268 20.5612C280.707 17.3324 279.586 14.3048 277.905 11.4796C276.292 8.55501 273.875 6.20327 270.664 4.423C267.517 2.63388 263.341 1.75 258.155 1.75C249.774 1.75 243.118 3.9633 238.217 8.41687C233.307 12.7982 230.869 19.1567 230.869 27.4502C230.869 33.3276 232.107 38.2975 234.598 42.3471L234.598 42.3471L234.601 42.352C237.155 46.2939 240.268 49.8331 243.937 52.9692C243.938 52.9696 243.938 52.97 243.939 52.9704L252.273 60.2911L252.275 60.2927C255.518 63.0832 258.083 65.8683 259.973 68.6472L259.975 68.65C261.846 71.3211 262.788 74.6296 262.788 78.5906C262.788 80.2346 262.439 81.7989 261.74 83.2862L261.74 83.2861L261.736 83.2962C261.44 84.0042 260.963 84.53 260.301 84.8825C259.633 85.2376 258.764 85.4235 257.679 85.4235C255.992 85.4235 254.544 84.885 253.321 83.808C252.18 82.7328 251.245 80.9447 250.536 78.4069C249.908 75.8717 249.552 72.5322 249.472 68.3818L249.467 68.0966L249.185 68.1394L230.963 70.9005L230.743 70.9338L230.75 71.1559C230.989 78.3783 232.144 84.296 234.226 88.8978Z"
+        stroke="#fff" stroke-width="0.5" />
+      <path fill="none" class="logo__path"
+        d="M155.75 102V102.25H156H177.406H177.656V102V59.7809H186.016C191.303 59.7809 196.077 58.9953 200.334 57.4197C204.615 55.8354 208.007 52.9989 210.506 48.9208L210.507 48.9188C213.012 44.7478 214.25 38.7693 214.25 31.0123C214.25 24.8164 213.33 19.5547 211.48 15.2355C209.627 10.8296 206.804 7.49457 203.008 5.2428C199.211 2.90811 194.379 1.75 188.528 1.75H156H155.75V2V102ZM192.949 38.114L192.949 38.114L192.947 38.1234C192.558 40.0504 191.709 41.4716 190.414 42.4152C189.119 43.3585 187.187 43.8488 184.581 43.8488H177.656V17.8056H184.462C187.307 17.8056 189.348 18.378 190.638 19.4744C191.942 20.5833 192.754 22.0907 193.065 24.0152L193.064 24.0152L193.067 24.0268C193.461 25.8985 193.659 28.1027 193.659 30.642C193.659 33.6762 193.421 36.165 192.949 38.114Z"
+        stroke="#fff" stroke-width="0.5" />
+      <path fill="none" class="logo__path"
+        d="M75.7541 101.955L75.6999 102.25H76H96.2933H96.5066L96.5402 102.039L99.8688 81.1389H113.73L116.94 102.038L116.972 102.25H117.187H137H137.299L137.246 101.955L119.114 1.9554L119.077 1.75H118.868H94.372H94.1638L94.1262 1.95483L75.7541 101.955ZM101.862 67.429L106.74 30.572L111.618 67.429H101.862Z"
+        stroke="#fff" stroke-width="0.5" />
+      <path fill="none" class="logo__path"
+        d="M15.4803 98.2487L15.4803 98.2487L15.4849 98.2516C19.8491 100.925 25.7278 102.25 33.0987 102.25C40.3867 102.25 46.0679 101.006 50.1152 98.4908L50.1163 98.4901C54.2319 95.9013 57.1028 92.4173 58.7195 88.042C60.4081 83.6077 61.25 78.6153 61.25 73.0684V64.6651V64.4151H61H40.0441H39.7941V64.6651V74.8691C39.7941 76.7795 39.675 78.6495 39.437 80.4791C39.2023 82.2824 38.6185 83.7564 37.6959 84.9139C36.8052 85.9532 35.2968 86.5039 33.0987 86.5039C31.0676 86.5039 29.5425 85.9963 28.4859 85.0165C27.4875 83.936 26.7893 82.5417 26.3986 80.8225C26.0828 78.9996 25.9244 77.0154 25.9244 74.8691V29.1308C25.9244 27.1417 26.0433 25.2738 26.2807 23.5268C26.5937 21.7266 27.2547 20.2528 28.2554 19.0938C29.3106 17.9627 30.9089 17.376 33.0987 17.376C35.3773 17.376 36.9226 17.9669 37.813 19.0827L37.8129 19.0828L37.8184 19.0892C38.7364 20.163 39.28 21.5515 39.4359 23.2711L39.4356 23.2711L39.4372 23.2822C39.675 25.0309 39.7941 26.8603 39.7941 28.7707V38.4946V38.7446H40.0441H61H61.25V38.4946V30.0912C61.25 24.544 60.408 19.6299 58.7178 15.3535C57.0201 11.0582 54.1078 7.73388 49.9898 5.38569C45.9438 2.95293 40.3049 1.75 33.0987 1.75C25.7278 1.75 19.8491 3.07474 15.4849 5.74841L15.4849 5.7484L15.4832 5.74951C11.2026 8.42143 8.17397 12.2286 6.39945 17.1608C4.63062 21.9973 3.75 27.79 3.75 34.533V69.587C3.75 76.1712 4.63095 81.9233 6.39921 86.8385L6.39966 86.8398C8.17437 91.692 11.2026 95.4976 15.4803 98.2487Z"
+        stroke="#fff" stroke-width="0.5" />
     </mask>
-    <rect
-      x="0"
-      y="0"
-      width="100%"
-      height="100%"
-      mask="url(#dynmask)"
-      fill="var(--bg-color)"></rect>
+    <rect x="0" y="0" width="100%" height="100%" mask="url(#logomask)" fill="var(--bg-color)"></rect>
   </svg>
+
   <div class="grok-bg__gradient"></div>
 
   <div class="box">
@@ -94,9 +73,17 @@ const {} = Astro.props;
     return start * (1 - t) + end * t;
   }
 
-  const capsBoldColors = ['#9160e6', '#ffeb23', '#ffffff'];
+  let colorPallet = ['#9160e6', '#ffeb23', '#ffffff'];
 
   document.addEventListener('DOMContentLoaded', () => {
+
+    const color1 = getComputedStyle(document.body).getPropertyValue('--color-1').trim();
+    const color2 = getComputedStyle(document.body).getPropertyValue('--color-2').trim();
+    const color3 = getComputedStyle(document.body).getPropertyValue('--color-3').trim();
+
+    colorPallet = [color1, color2, color3];
+
+
     const container = document.querySelector('.grok-wrap');
     const boxes = document.querySelectorAll('.box');
 
@@ -125,7 +112,7 @@ const {} = Astro.props;
           t = Math.max(-1, Math.min(1, t));
 
           let colorIndex = Math.round(
-            ((t + 1) / 2) * (capsBoldColors.length - 1)
+            ((t + 1) / 2) * (colorPallet.length - 1)
           );
 
           boxes.forEach((boxAgain, i) => {
@@ -133,9 +120,9 @@ const {} = Astro.props;
             if (adjustedIndex < 0) {
               adjustedIndex = 0;
             }
-            adjustedIndex = Math.min(adjustedIndex, capsBoldColors.length - 1);
+            adjustedIndex = Math.min(adjustedIndex, colorPallet.length - 1);
             (boxAgain as HTMLElement).style.backgroundColor =
-              capsBoldColors[adjustedIndex];
+              colorPallet[adjustedIndex];
           });
         }
 
@@ -151,43 +138,35 @@ const {} = Astro.props;
       });
     }
 
-    const text = document.querySelector('#svg-text');
-    const svg = document.querySelector('.dynamic-svg');
+    // const text = document.querySelector('#svg-text');
+    const svg = document.querySelector('.grok-wrap .logo');
+    const svgPaths = svg.querySelectorAll('.logo__path');
 
-    if (svg && text) {
-      const resizeSVG = () => {
-        const bbox = (text as unknown as SVGGraphicsElement).getBBox();
-        if (bbox.width === 0 || bbox.height === 0) return;
-
-        const padding = 0;
-        const width = bbox.width + padding;
-        const height = bbox.height + padding;
-
-        svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
-
-        text.setAttribute('x', (width / 2).toString());
-        text.setAttribute('y', (height / 2).toString());
-        text.setAttribute('dy', (bbox.height * 0.1).toString());
-      };
-
-      resizeSVG();
-      window.addEventListener('resize', resizeSVG);
-
+    if (svg && svgPaths.length) {
       const form = document.querySelector('#svgwordform');
       const input = document.querySelector('#svgword') as HTMLInputElement;
+      const inputStokeColor = document.querySelector('#stroke_color') as HTMLInputElement;
+      const inputColor1 = document.querySelector('#circle_color_1') as HTMLInputElement;
+      const inputColor2 = document.querySelector('#circle_color_2') as HTMLInputElement;
+      const inputColor3 = document.querySelector('#circle_color_3') as HTMLInputElement;
 
       if (form && input) {
         form.addEventListener('submit', (event) => {
           event.preventDefault();
           if (!input.value.trim()) return;
-          text.textContent = input.value;
-          resizeSVG();
-          // перезапуск css анимации
-          (svg.querySelector('.logo__path') as HTMLElement).style.animation = 'none';
-          void (svg as HTMLElement).offsetWidth;
-          setTimeout(() => {
-            (svg.querySelector('.logo__path') as HTMLElement).style.animation = 'logo-path-anim 4s linear forwards';
-          }, 100);
+          document.body.style.setProperty('--bg-color', input.value);
+          document.body.style.setProperty('--stroke-color', inputStokeColor.value);
+          document.body.style.setProperty('--color-1', inputColor1.value);
+          document.body.style.setProperty('--color-2', inputColor2.value);
+          document.body.style.setProperty('--color-3', inputColor3.value);
+          colorPallet = [inputColor1.value, inputColor2.value, inputColor3.value];
+          svgPaths.forEach((path) => {
+            (path as HTMLElement).style.animation = 'none';
+            // eslint-disable-next-line max-nested-callbacks
+            setTimeout(() => {
+              (path as HTMLElement).style.animation = 'logo-path-anim 4s linear forwards';
+            }, 100);
+          });
         });
       }
     }
