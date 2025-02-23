@@ -4,9 +4,13 @@ import Container from '@components/Container/Container';
 ---
 
 <header class="header">
-  <Container>
+  <Container className="flex items-center justify-between flex-wrap gap-2">
     <div class="header__logo">
       <Icon name="logo" />
     </div>
+    <form name="svgwordform" id="svgwordform" class="flex gap-2">
+      <input type="text" name="svgword" id="svgword" placeholder="Type your word..." maxlength="10" class="w-full p-2 bg-slate-200 placeholder:text-black/50" />
+      <button type="submit" class="px-2 py-3 bg-slate-300 text-black">Apply</button>
+    </form>
   </Container>
 </header>
